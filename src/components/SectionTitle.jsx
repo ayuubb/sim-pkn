@@ -2,8 +2,7 @@ import React from 'react'
 
 export default function SectionTitle({title, route}) {
   return (
-    <>
-    <section id="title" className="emerald">
+    <section id="title" className="emerald" style={{padding: '30px 0'}}>
         <div className="container">
             <div className="row">
                 <div className="col-sm-6">
@@ -17,7 +16,6 @@ export default function SectionTitle({title, route}) {
                 </div>
             </div>
         </div>
-    </section>
-    </>
+    </section> 
   )
 }
