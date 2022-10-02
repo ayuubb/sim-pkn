@@ -1,11 +1,9 @@
-import React from 'react'
-import { Nav,Navbar,Container } from 'react-bootstrap';
+import React from "react";
 
 export default function NavbarComp() {
   return (
-    <div>
-        <Navbar expand="lg" variant="dark" bg="primary">
-            <Container>
+    <>
+      {/* <Navbar expand="lg" variant="dark" bg="primary">
                 <Navbar.Brand href="#">Navbar</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -17,8 +15,7 @@ export default function NavbarComp() {
                         <Nav.Link href="#daftar">Sign Up</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    </div>
-  )
+        </Navbar> */}
+    </>
+  );
 }

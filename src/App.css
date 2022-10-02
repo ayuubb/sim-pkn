@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.emerald {
+  background-color: #5cb85c;
+}
