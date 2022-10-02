@@ -1,24 +1,34 @@
-import React from 'react'
-import { Nav,Navbar,Container } from 'react-bootstrap';
+import React from 'react';
+import { Navbar,NavItem } from 'react-bootstrap';
 
 export default function NavbarComp() {
-  return (
-    <div>
-        <Navbar expand="lg" variant="dark" bg="primary">
-            <Container>
-                <Navbar.Brand href="#">Navbar</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ml-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#pengumuman">Pengumuman</Nav.Link>
-                        <Nav.Link href="#panduank">Panduan</Nav.Link>
-                        <Nav.Link href="#login">Login</Nav.Link>
-                        <Nav.Link href="#daftar">Sign Up</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    </div>
-  )
+    return (
+    <header className="navbar navbar-inverse navbar-fixed-top wet-asphalt" role="banner">
+            <div className="container" style={{padding: '0px 32px'}}>
+                <div className="navbar-header">
+                    <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span className="sr-only">Toggle navigation</span>
+                        <span className="fa fa-bars"></span>
+                    </button>
+                    <a className="navbar-brand" href="https://simanta.umm.ac.id/~pkn_prod/">
+                        <h2 style={{marginTop:'10px'}}><i className="fa fa-home"></i> SIM PKN</h2>
+                    </a>
+                </div>
+                <div className="collapse navbar-collapse">
+                    <ul className="nav navbar-nav navbar-right">
+                        <li><a href="https://simanta.umm.ac.id/~pkn_prod/index.php">Home</a></li>
+                        <li><a href="https://simanta.umm.ac.id/~pkn_prod/index.php/pengumuman">Pengumuman</a></li>
+                        <li><a href="https://simanta.umm.ac.id/~pkn_prod/index.php/panduan">Panduan</a></li>           
+                        
+                <li>
+                <a href="https://simanta.umm.ac.id/~pkn_prod/index.php/login" title="Login">Login</a>
+            </li>
+            <li><a href="https://simanta.umm.ac.id/~pkn_prod/index.php/registrasi">Sign Up</a></li>
+        
+                    </ul>
+                </div>
+            </div>
+    
+    </header>
+    );
 }
