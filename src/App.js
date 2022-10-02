@@ -1,13 +1,14 @@
 
 // import './App.css';
 import React from 'react';
-import { Button } from 'reactstrap';
+import CarouselJumbotron from './components/CarouselJumbotron';
 import Navbar from './components/NavbarComp';
 
 function App() {
   return (
-    <div className="container">
+    <div>
       <Navbar/>
+      <CarouselJumbotron/>
     </div>
   );
 }
