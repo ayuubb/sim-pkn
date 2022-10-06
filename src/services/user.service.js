@@ -2,13 +2,13 @@ import axios from "axios";
 import authHeader from "./auth-header";
 import url from "./API_URL";
 
-const API_URL = url + "/users";
+const API_URL = url + "/portofolio";
 
 const createUser = (data) => {
   return axios.post(API_URL + "/", data, { headers: authHeader() });
 };
 
-const getAllUsers = () => {
+const getAllPortofolio = () => {
   return axios.get(API_URL + "/", { headers: authHeader() });
 };
 
@@ -44,7 +44,7 @@ const deleteAllUserByIdAngkatan = (data) => {
 };
 
 const userService = {
-  getAllUsers,
+  getAllPortofolio,
   getUserById,
   createUser,
   updateGuru,
