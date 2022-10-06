@@ -5,11 +5,11 @@ import Footer from './components/FooterComp';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import AuthService from './services/auth.service';
+import Portfolio from './pages/Portfolio';
+import Laporan from './pages/Laporan';
 
 const navbarContext = React.createContext();
 
-import Portfolio from './pages/Portfolio';
-import Laporan from './pages/Laporan';
 
 
 function App() {
