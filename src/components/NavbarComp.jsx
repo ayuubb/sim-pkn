@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import AuthService from '../services/auth.service';
+import { navbarContext } from '../App';
 import { Link } from 'react-router-dom'
 
+
 export default function NavbarComp() {
+
+    const [currentUser, setCurrentUser] = useState(undefined);
+    const [listNavbar, setListNavbar] = useState([]);
+    const navbarC = useContext(navbarContext);
+
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+
+        if (user) {
+            console.log(user);
+            setCurrentUser(user);
+        } else {
+            console.log('tidak ada');
+        }
+
+        console.log(navbarC.navbar);
+    }, []);
+
     return (
-        <header
-            className="navbar navbar-inverse navbar-fixed-top wet-asphalt"
-            role="banner"
-        >
+        <header className="navbar navbar-inverse navbar-fixed-top wet-asphalt" role="banner">
             <div className="container" style={{ padding: '0px 32px' }}>
                 <div className="navbar-header">
                     <button
