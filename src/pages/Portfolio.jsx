@@ -1,6 +1,27 @@
 import React from 'react';
 
 export default function Portfolio() {
+
+    useEffect(() => {
+        UserService.getAllUsers().then(
+          (response) => {
+            const data = response.data.data.filter((e) => e.role === "1");
+    
+            console.log(response);
+    
+          },
+          (error) => {
+            console.log("Private page", error.response);
+            // Invalid token
+            if (error.response && error.response.status === 401) {
+              AuthService.logout();
+              history.push("/login");
+              window.location.reload();
+            }
+          }
+        );
+      }, []);
+      
     return (
         <section id="about-us" className="container">
             <div className="row" id="meet-the-team">
