@@ -8,6 +8,10 @@ import AuthService from './services/auth.service';
 
 const navbarContext = React.createContext();
 
+import Portfolio from './pages/Portfolio';
+import Laporan from './pages/Laporan';
+
+
 function App() {
 
   const [navbar, setnavbar] = useState(AuthService.getCurrentUser())
@@ -20,6 +24,8 @@ function App() {
             <Routes>  
               <Route path='/' element={<Login />} />
               <Route path='/home' element={<Home />} />
+              <Route path='/portfolio' element={<Portfolio />} />
+              <Route path='/laporan' element={<Laporan />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           <Footer />

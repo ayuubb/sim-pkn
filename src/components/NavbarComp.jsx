@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import AuthService from '../services/auth.service';
 import { navbarContext } from '../App';
+import { Link } from 'react-router-dom'
+
 
 export default function NavbarComp() {
 
@@ -25,31 +27,52 @@ export default function NavbarComp() {
         <header className="navbar navbar-inverse navbar-fixed-top wet-asphalt" role="banner">
             <div className="container" style={{ padding: '0px 32px' }}>
                 <div className="navbar-header">
-                    <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <button
+                        type="button"
+                        className="navbar-toggle"
+                        data-toggle="collapse"
+                        data-target=".navbar-collapse"
+                    >
                         <span className="sr-only">Toggle navigation</span>
                         <span className="fa fa-bars"></span>
                     </button>
-                    <a className="navbar-brand" href="https://simanta.umm.ac.id/~pkn_prod/">
-                        <h2 style={{ marginTop: '10px' }}><i className="fa fa-home"></i> SIM PKN</h2>
+                    <a
+                        className="navbar-brand"
+                        href="https://simanta.umm.ac.id/~pkn_prod/"
+                    >
+                        <h2 style={{ marginTop: '10px' }}>
+                            <i className="fa fa-home"></i> SIM PKN
+                        </h2>
                     </a>
                 </div>
                 <div className="collapse navbar-collapse">
                     <ul className="nav navbar-nav navbar-right">
-                        <li><a href="https://simanta.umm.ac.id/~pkn_prod/index.php">Home</a></li>
-                        <li><a href="https://simanta.umm.ac.id/~pkn_prod/index.php/pengumuman">Pengumuman</a></li>
-                        <li><a href="https://simanta.umm.ac.id/~pkn_prod/index.php/panduan">Panduan</a></li>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        {/* <li>
+                            <a href='/pengumuman'>
+                                Pengumuman
+                            </a>
+                        </li> */}
+                        <li>
+                            <Link to="/portfolio">Portfolio</Link>
+                        </li>
+                        <li>
+                            <Link to="/laporan">Laporan</Link>
+                        </li>
 
-                        {navbarC.navbar ? '' : (
-                            <>
-                                <li><a href="https://simanta.umm.ac.id/~pkn_prod/index.php/login" title="Login">Login</a></li>
-                                <li><a href="https://simanta.umm.ac.id/~pkn_prod/index.php/registrasi">Sign Up</a></li>
-                            </>
-                        )}
-
+                        <li>
+                            <Link
+                                to="/login"
+                                title="Login"
+                            >
+                                Login
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>
-
         </header>
     );
 }

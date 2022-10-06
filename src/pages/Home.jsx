@@ -20,7 +20,10 @@ export default function Home() {
 
   return (
     <>
+    {/* ini carousel */}
         <CarouseJumbotron />
+    {/* ini akhir carousel */}
+
     </>
   )
 }
