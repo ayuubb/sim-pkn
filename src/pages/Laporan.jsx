@@ -2,6 +2,8 @@ import React from 'react';
 import DownloadLaporan from '../components/DownloadLaporan';
 import TableComp from '../components/TableComp';
 import TanggalPelakasaan from '../components/TanggalPelakasaan';
+import UploadBerkas from '../components/UploadBerkas';
+import UploadLaporan from '../components/UploadLaporan';
 import UploadNilai from '../components/UploadNilai';
 
 export default function Laporan() {
@@ -18,8 +20,10 @@ export default function Laporan() {
                 <div className="col-lg-10 col-lg-push-1">
                     <TableComp />
                     <TanggalPelakasaan />
-                    <DownloadLaporan/>
-                    <UploadNilai/>
+                    <DownloadLaporan />
+                    <UploadNilai />
+                    <UploadLaporan />
+                    <UploadBerkas />
                 </div>
             </div>
         </>

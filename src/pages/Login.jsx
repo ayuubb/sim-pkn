@@ -18,7 +18,7 @@ export default function Login() {
                 .then((res) => {
                     console.log(res);
                     navbarC.setnavbar(res);
-                    navigate('/home')
+                    navigate('/portfolio')
                 }, (error) => {
                     console.log(error);
                 })
