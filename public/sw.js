@@ -7,13 +7,12 @@ this.addEventListener('install', (event) => {
     );
 });
 
-// this.addEventListener('fetch',(event)=>{
-//     event.respondWith(
-//         caches.match(event.request).then((resp)=>{
-//             if(resp)
-//             {
-//                 return resp;
-//             }
-//         })
-//     )
-// })
+this.addEventListener('fetch', (event) => {
+    event.respondWith(
+        caches.match(event.request).then((resp) => {
+            if (resp) {
+                return resp;
+            }
+        })
+    );
+});
