@@ -20,12 +20,6 @@ export default function Portfolio() {
             },
             (error) => {
                 console.log('Private page', error.response);
-                // Invalid token
-                // if (error.response && error.response.status === 401) {
-                //   AuthService.logout();
-                //   history.push("/login");
-                //   window.location.reload();
-                // }
             }
         );
     }, []);
