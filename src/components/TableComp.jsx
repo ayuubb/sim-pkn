@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function TableComp() {
+export default function TableComp({ dataLaporan }) {
     return (
         <div className="panel panel-default">
             <div className="panel-heading">
@@ -98,16 +98,24 @@ export default function TableComp() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="gradeX odd" role="row">
-                                    <input
-                                        type="hidden"
-                                        name="id"
-                                        value="36134"
-                                    />
-                                    <td className="sorting_1">1</td>
-                                    <td>pembukaan Internship Batch 4</td>{' '}
-                                    <td>04-01-2021</td>{' '}
-                                </tr>
+                                {dataLaporan.map((data, index) => (
+                                    <tr className="gradeX odd" role="row">
+                                        <input
+                                            type="hidden"
+                                            name="id"
+                                            value="36134"
+                                        />
+                                        <td className="sorting_1">
+                                            {index + 1}
+                                        </td>
+                                        <td>{data?.isi_laporan}</td>
+                                        <td>
+                                            {new Date(
+                                                data?.tgl_laporan
+                                            ).toDateString()}
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                         <div className="row">

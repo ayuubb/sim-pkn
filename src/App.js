@@ -7,9 +7,9 @@ import Home from './pages/Home';
 import AuthService from './services/auth.service';
 import Portfolio from './pages/Portfolio';
 import Laporan from './pages/Laporan';
+import TambahLaporan from './pages/TambahLaporan';
 
 const navbarContext = React.createContext();
-
 
 
 function App() {
@@ -26,6 +26,7 @@ function App() {
               <Route path='/home' element={<Home />} />
               <Route path='/portfolio' element={<Portfolio />} />
               <Route path='/laporan' element={<Laporan />} />
+              <Route path='/tambah-laporan' element={<TambahLaporan />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           <Footer />

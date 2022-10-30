@@ -4,6 +4,7 @@ import url from "./API_URL";
 
 const API_URL_PORTOFOLIO = url + "/portofolio";
 const API_URL_MAHASISWA = url + "/mahasiswa";
+const API_URL_LAPORAN = url + "/laporan";
 
 // const createUser = (data) => {
 //   return axios.post(API_URL + "/", data, { headers: authHeader() });
@@ -19,6 +20,13 @@ const getPortofolioById = (id) => {
 
 const getMahasiswaById = (id) => {
   return axios.get(API_URL_MAHASISWA + `/${id}`, { headers: authHeader() });
+};
+const getLaporanById = (id) => {
+  return axios.get(API_URL_LAPORAN + `/${id}`, { headers: authHeader() });
+};
+
+const getAllLaporan = () => {
+  return axios.get(API_URL_LAPORAN + "/", { headers: authHeader() });
 };
 
 // const updateGuru = (data) => {
@@ -52,6 +60,8 @@ const userService = {
   getAllPortofolio,
   getPortofolioById ,
   getMahasiswaById ,
+  getLaporanById,
+  getAllLaporan
   // createUser,
   // updateGuru,
   // updateSiswa,
