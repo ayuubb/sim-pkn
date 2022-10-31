@@ -30,7 +30,7 @@ export default function Laporan() {
             <div className="row">
                 <div className="col-lg-10 col-lg-push-1">
                     <h1>
-                        Laporan <small>Harian</small>
+                        Laporan <small>Harian tes</small>
                     </h1>
                 </div>
             </div>

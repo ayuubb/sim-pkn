@@ -9,6 +9,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './assets/main.css';
 import './assets/font-awesome-4.7.0/css/font-awesome.min.css';
 import swDev from './swDev';
+// import firebase from './config/firebase';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,4 +17,6 @@ root.render(
         <App />
     </React.StrictMode>
 );
-// swDev();
+swDev();
+
+// firebase();
