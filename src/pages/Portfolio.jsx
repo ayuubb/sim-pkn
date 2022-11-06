@@ -1,27 +1,81 @@
 import React, { useEffect, useState } from 'react';
 import UserService from '../services/user.service';
 import AuthService from '../services/auth.service';
+import { db } from '../config/firebase';
+import {
+    collection,
+    doc,
+    getDoc,
+    onSnapshot,
+    getDocs,
+} from 'firebase/firestore';
 
 export default function Portfolio() {
     const [bidangminat, setBidangminat] = useState('');
+    const [sd, setSd] = useState('');
+    const [smp, setSmp] = useState('');
+    const [sma, setSma] = useState('');
+    const [tahunSd, setTahunsd] = useState('');
+    const [tahunSmp, setTahunsmp] = useState('');
+    const [tahunSma, setTahunsma] = useState('');
+    const [nim, setNim] = useState('');
+
     const [alamat, setAlamat] = useState('');
     const [email, setEmail] = useState('');
     const [telp, setTelp] = useState('');
     const [tempatLhr, setTempatLhr] = useState('');
     const [tglLahir, setTglLahir] = useState('');
 
+    const [users, setUsers] = useState();
+    const [laporan, setLaporan] = useState([]);
+    const mahasiswaCollectionRef = doc(db, 'mahasiswa', '201810370311005');
+    const portofolioCollectionRef = doc(db, 'portofolio', '201810370311005');
+    const laporanCollectionRef = collection(
+        db,
+        'mahasiswa/GcQHisxXVrraAN1dx198/laporan'
+    );
+
     useEffect(() => {
-        const user = AuthService.getCurrentUser();
-        UserService.getPortofolioById(user.uid).then(
-            (response) => {
-                const data = response.data.data;
-                console.log(data);
+        // console.log(mahasiswaCollectionRef);
+        const getUsers = async () => {
+            const dataRef = await onSnapshot(mahasiswaCollectionRef, (doc) => {
+                console.log('Current data: ', doc.data());
+                const data = doc.data();
+                setUsers(data.nama);
+                setAlamat(data.alamat);
+                setEmail(data.email);
+                setTelp(data.telepon);
+                setTempatLhr(data.tempat_lahir);
+                setTglLahir(data.tanggal_lahir);
+            });
+            // console.log(dataRef.dataRef());
+            // const data = dataRef.data();
+        };
+
+        const getPortofolio = async () => {
+            const dataRef = await onSnapshot(portofolioCollectionRef, (doc) => {
+                const data = doc.data();
                 setBidangminat(data.bidang_minat);
-            },
-            (error) => {
-                console.log('Private page', error.response);
-            }
-        );
+                setNim(data.nim);
+                setSd(data.sd);
+                setSmp(data.smp);
+                setSma(data.sma);
+                setTahunsd(data.tahun_sd);
+                setTahunsmp(data.tahun_smp);
+                setTahunsma(data.tahun_sma);
+            });
+        };
+
+        // const getLaporan = async () => {
+        //     const data = await getDocs(laporanCollectionRef);
+
+        //     setLaporan(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        //     console.log(laporan);
+        // };
+
+        // getLaporan();
+        getUsers();
+        getPortofolio();
     }, []);
 
     useEffect(() => {
@@ -29,12 +83,12 @@ export default function Portfolio() {
         UserService.getMahasiswaById(user.uid).then(
             (response) => {
                 const data = response.data.data;
-                console.log(data);
-                setAlamat(data.alamat);
-                setEmail(data.email);
-                setTelp(data.telp);
-                setTempatLhr(data.tempat_lhr);
-                setTglLahir(data.tgl_lahir);
+                // console.log(data);
+                // setAlamat(data.alamat);
+                // setEmail(data.email);
+                // setTelp(data.telp);
+                // setTempatLhr(data.tempat_lhr);
+                // setTglLahir(data.tgl_lahir);
             },
             (error) => {
                 console.log('Private page', error.response);
@@ -62,15 +116,17 @@ export default function Portfolio() {
                             />
                         </p>
                         <h5>
-                            AYUB MAULANA
-                            <small className="designation muted">
-                                201810370311005
-                            </small>
+                            {users}
+                            {/* {users.map((user) => {
+                                return <p>{user.nama}</p>;
+                            })} */}
+                            <small className="designation muted">{nim}</small>
                         </h5>
+
                         <p>Pendidikan :</p>
-                        <p>SDN 013 BATU SOPANG</p>
-                        <p>SMPN 1 BATU SOPANG</p>
-                        <p>SMK BUDI UTOMO </p>
+                        <p>{sd}</p>
+                        <p>{smp}</p>
+                        <p>{sma}</p>
                         <a
                             id="ganti_pass_btn"
                             href="#a"
@@ -106,6 +162,7 @@ export default function Portfolio() {
                                     onChange={(e) =>
                                         setBidangminat(e.target.value)
                                     }
+                                    defaultValue={bidangminat}
                                     name="bidang_minat"
                                     className="form-control"
                                     style={{ height: '35px' }}
@@ -250,7 +307,7 @@ export default function Portfolio() {
                                     id="sd"
                                     name="sd"
                                     placeholder="(required) SD/MI"
-                                    value="SDN 013 BATU SOPANG"
+                                    value={sd}
                                     required=""
                                 />
                             </div>
@@ -261,7 +318,7 @@ export default function Portfolio() {
                                     id="tahun_sd"
                                     name="tahun_sd"
                                     placeholder="(required) Tahun Lulus"
-                                    value="2011"
+                                    value={tahunSd}
                                     required=""
                                 />
                             </div>
@@ -274,7 +331,7 @@ export default function Portfolio() {
                                     id="smp"
                                     name="smp"
                                     placeholder="(required) SMP/MTS"
-                                    value="SMPN 1 BATU SOPANG"
+                                    value={smp}
                                     required=""
                                 />
                             </div>
@@ -285,7 +342,7 @@ export default function Portfolio() {
                                     id="tahun_smp"
                                     name="tahun_smp"
                                     placeholder="(required) Tahun Lulus"
-                                    value="2014"
+                                    value={tahunSmp}
                                     required=""
                                 />
                             </div>
@@ -309,7 +366,7 @@ export default function Portfolio() {
                                     id="tahun_sma"
                                     name="tahun_sma"
                                     placeholder="(required) Tahun Lulus"
-                                    value="2017"
+                                    value={tahunSma}
                                     required=""
                                 />
                             </div>
