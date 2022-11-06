@@ -1,5 +1,5 @@
 const cacheData = 'site-static-v1';
-const cacheDataDynamic = 'site-dynamic-v1';
+const cacheDataDynamic = 'site-dynamic-v2';
 
 const data = [
     '/',
@@ -33,15 +33,17 @@ this.addEventListener('activate', (event) => {
 
 this.addEventListener('fetch', (event) =>{
     // console.log('fetch event', event);
-    event.respondWith(
-        caches.match(event.request)
-        .then(cacheRes => {
-            return cacheRes || fetch(event.request).then(fetchRes => {
-                return caches.open(cacheDataDynamic).then(cache =>{
-                    cache.put(event.request.url, fetchRes.clone())
-                    return fetchRes;
+    if(event.request.url.indexOf('firestore.googleapis.com') === -1){
+        event.respondWith(
+            caches.match(event.request)
+            .then(cacheRes => {
+                return cacheRes || fetch(event.request).then(fetchRes => {
+                    return caches.open(cacheDataDynamic).then(cache =>{
+                        cache.put(event.request.url, fetchRes.clone())
+                        return fetchRes;
+                    })
                 })
             })
-        })
-    )
+        )
+    }
 });

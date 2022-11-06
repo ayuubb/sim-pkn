@@ -1,6 +1,22 @@
-import React from 'react';
+import { db } from '../config/firebase';
+import React, { useEffect, useState } from 'react';
+import { addDoc, collection } from 'firebase/firestore';
 
 export default function TambahLaporan() {
+    const [tanggalLaporan, setTanggalLaporan] = useState(0);
+    const [kegiatan, setKegiatan] = useState('');
+
+    const laporanCollectionRef = collection(
+        db,
+        'mahasiswa/GcQHisxXVrraAN1dx198/laporan'
+    );
+
+    const createEvent = async () => {
+        await addDoc(laporanCollectionRef, {
+            tanggal_laporan: tanggalLaporan,
+            isi_laporan: kegiatan,
+        });
+    };
     return (
         <div id="page-wrapper">
             <div className="row">
@@ -41,12 +57,7 @@ export default function TambahLaporan() {
                         <div className="panel-heading">Laporan Management</div>
                         <div className="panel-body">
                             <h5 className="text-right">Tanggal : 27-10-2022</h5>
-                            <form
-                                className="form-horizontal"
-                                role="form"
-                                method="post"
-                                action="https://simanta.umm.ac.id/~pkn_prod/index.php/laporan?action=submit"
-                            >
+                            <form className="form-horizontal">
                                 <input
                                     type="hidden"
                                     name="increment"
@@ -67,6 +78,11 @@ export default function TambahLaporan() {
                                             name="tgl_laporan"
                                             placeholder="Tanggal Laporan"
                                             required=""
+                                            onChange={(e) => {
+                                                setTanggalLaporan(
+                                                    e.target.value
+                                                );
+                                            }}
                                         />
                                     </div>
                                 </div>
@@ -85,17 +101,19 @@ export default function TambahLaporan() {
                                             id="isi_laporan"
                                             name="isi_laporan"
                                             rows="4"
+                                            onChange={(e) => {
+                                                setKegiatan(e.target.value);
+                                            }}
                                         ></textarea>
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <div className="col-sm-offset-3 col-sm-8">
                                         <input
-                                            type="submit"
                                             name="submit"
                                             className="btn btn-primary"
-                                            value="Submit"
                                             style={{ marginRight: '4px' }}
+                                            onClick={createEvent}
                                         />
                                         <a
                                             href="/index.php/laporan"

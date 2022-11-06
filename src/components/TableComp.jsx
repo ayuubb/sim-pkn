@@ -110,9 +110,9 @@ export default function TableComp({ dataLaporan }) {
                                         </td>
                                         <td>{data?.isi_laporan}</td>
                                         <td>
-                                            {new Date(
-                                                data?.tgl_laporan
-                                            ).toDateString()}
+                                            {data?.tanggal_laporan}
+                                            {/* {new Date(
+                                            ).toDateString()} */}
                                         </td>
                                     </tr>
                                 ))}
@@ -151,14 +151,7 @@ export default function TableComp({ dataLaporan }) {
                                             <a href="#">1</a>
                                         </li>
                                         <li
-                                            className="paginate_button "
-                                            aria-controls="dataTables-laporan"
-                                            tabindex="0"
-                                        >
-                                            <a href="#">2</a>
-                                        </li>
-                                        <li
-                                            class="paginate_button next"
+                                            class="paginate_button next disabled"
                                             aria-controls="dataTables-laporan"
                                             tabindex="0"
                                             id="dataTables-laporan_next"
