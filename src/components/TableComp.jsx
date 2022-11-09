@@ -1,17 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function TableComp({ dataLaporan }) {
     return (
         <div className="panel panel-default">
             <div className="panel-heading">
                 Laporan
-                <a
-                    type="button"
-                    className="btn btn-xs btn-primary pull-right myTooltip"
-                    href="https://simanta.umm.ac.id/~pkn_prod/index.php/laporan?action=add"
-                    title="Buat baru"
-                >
-                    <i className="fa fa-plus-circle"></i> Tambah
+                <a className="btn btn-xs btn-primary pull-right myTooltip">
+                    <Link to="/tambah-laporan">
+                        <i className="fa fa-plus-circle btn-primary"></i> Tambah
+                    </Link>
                 </a>
             </div>
             <div className="panel-body">

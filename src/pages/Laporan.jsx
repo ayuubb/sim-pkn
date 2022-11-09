@@ -26,6 +26,19 @@ export default function Laporan() {
     const [dataLaporan, setDataLaporan] = useState([]);
 
     useEffect(() => {
+        const offline = async () => {
+            await enableIndexedDbPersistence(db).catch((err) => {
+                if (err.code == 'failed-precondition') {
+                    // Multiple tabs open, persistence can only be enabled
+                    // in one tab at a a time.
+                    // ...
+                } else if (err.code == 'unimplemented') {
+                    // The current browser does not support all of the
+                    // features required to enable persistence
+                    // ...
+                }
+            });
+        };
         const getLaporan = async () => {
             const unsubscribe = await onSnapshot(
                 laporanCollectionRef,
@@ -41,10 +54,10 @@ export default function Laporan() {
                             ? 'local cache'
                             : 'server';
                         console.log('data dari ' + source);
-                        // laporans.push(doc.data());
+                        laporans.push(change.doc.data());
                     });
-                    // console.log(laporans);
-                    // setDataLaporan(laporans);
+                    console.log(laporans);
+                    setDataLaporan(laporans);
                 }
             );
         };
