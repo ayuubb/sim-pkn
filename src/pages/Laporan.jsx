@@ -7,7 +7,7 @@ import TanggalPelakasaan from '../components/TanggalPelakasaan';
 import UploadBerkas from '../components/UploadBerkas';
 import UploadLaporan from '../components/UploadLaporan';
 import UploadNilai from '../components/UploadNilai';
-import { db } from '../config/firebase';
+import { db } from '../firebase';
 import {
     collection,
     doc,

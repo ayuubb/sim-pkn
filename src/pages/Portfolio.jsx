@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import UserService from '../services/user.service';
 import AuthService from '../services/auth.service';
-import { db } from '../config/firebase';
+import { db } from '../firebase';
 import {
     collection,
     doc,

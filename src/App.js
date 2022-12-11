@@ -8,12 +8,25 @@ import AuthService from './services/auth.service';
 import Portfolio from './pages/Portfolio';
 import Laporan from './pages/Laporan';
 import TambahLaporan from './pages/TambahLaporan';
+import {firebase} from './firebase'
 
 const navbarContext = React.createContext();
 
 
 function App() {
 
+  // useEffect(() => {
+  //    const msg = firebase.messaging();
+  //    msg.requestPermission().then(()=>{
+  //     return msg.getToken();
+
+  //    }).then((data) =>{
+  //     console.log('token', data);
+  //    }).catch(()=>{
+  //     console.log('error')
+  //    })
+  // })
+  
   const [navbar, setnavbar] = useState(AuthService.getCurrentUser())
 
   return (
