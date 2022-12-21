@@ -1,8 +1,10 @@
 import { db } from '../firebase';
 import React, { useEffect, useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
+import { useNavigate } from "react-router-dom";
 
 export default function TambahLaporan() {
+    const navigate = useNavigate();
     const [tanggalLaporan, setTanggalLaporan] = useState(0);
     const [kegiatan, setKegiatan] = useState('');
 
@@ -16,6 +18,7 @@ export default function TambahLaporan() {
             tanggal_laporan: tanggalLaporan,
             isi_laporan: kegiatan,
         });
+        navigate('/laporan')
     };
     return (
         <div id="page-wrapper">
@@ -114,6 +117,7 @@ export default function TambahLaporan() {
                                             className="btn btn-primary"
                                             style={{ marginRight: '4px' }}
                                             onClick={createEvent}
+                                            value="submit"
                                         />
                                         <a
                                             href="/index.php/laporan"
