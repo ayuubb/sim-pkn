@@ -11,23 +11,21 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const navbarC = useContext(navbarContext);
 
-    // const handleLogin = async () => {
-    //     try {
-    //         await AuthService.login(nim, password)
-    //             .then((res) => {
-    //                 console.log(res);
-    //                 navbarC.setnavbar(res);
-    //                 navigate('/portfolio')
-    //             }, (error) => {
-    //                 console.log(error);
-    //             })
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-
-    const handleLogin = () => {
-        navigate('/portfolio');
+    const handleLogin = async () => {
+        try {
+            await AuthService.login(nim, password).then(
+                (res) => {
+                    console.log(res);
+                    navbarC.setnavbar(res);
+                    navigate('/portfolio');
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     useEffect(() => {
