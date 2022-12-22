@@ -9,8 +9,7 @@ export default function TambahLaporan() {
     const [kegiatan, setKegiatan] = useState('');
 
     const laporanCollectionRef = collection(
-        db,
-        'mahasiswa/GcQHisxXVrraAN1dx198/laporan'
+        db, 'laporan/201810370311005/laporan'
     );
 
     const createEvent = async () => {

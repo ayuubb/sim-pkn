@@ -19,7 +19,7 @@ import {
     enableIndexedDbPersistence,
 } from 'firebase/firestore';
 const laporanCollectionRef = query(
-    collection(db, 'mahasiswa/GcQHisxXVrraAN1dx198/laporan')
+    collection(db, 'laporan/201810370311005/laporan')
 );
 
 export default function Laporan() {
