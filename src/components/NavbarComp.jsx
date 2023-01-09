@@ -15,14 +15,14 @@ export default function NavbarComp() {
         const user = AuthService.getCurrentUser();
 
         if (user) {
-            console.log(user);
+            // console.log(user);
             setCurrentUser(user);
             setLogin(true)
         } else {
-            console.log('tidak ada');
+            // console.log('tidak ada');
         }
 
-        console.log(navbarC.navbar);
+        // console.log(navbarC.navbar);
     }, []);
 
     if (login){

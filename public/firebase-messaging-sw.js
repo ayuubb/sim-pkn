@@ -1,24 +1,32 @@
-importScripts("https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js");
 importScripts(
-    "https://www.gstatic.com/firebasejs/9.15.0/firebase-messaging.js"
+    'https://www.gstatic.com/firebasejs/9.8.4/firebase-app-compat.js'
+);
+importScripts(
+    'https://www.gstatic.com/firebasejs/9.8.4/firebase-messaging-compat.js'
 );
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBhpLAc9nr_nZhHFjvF6cueN31IO4j7pzc",
-    authDomain: "sim-pkn.firebaseapp.com",
-    projectId: "sim-pkn",
-    storageBucket: "sim-pkn.appspot.com",
-    messagingSenderId: "501182557899",
-    appId: "1:501182557899:web:044ebc631883b5c0b0f54e",
-    measurementId: "G-3DEMQSVWE7"
+    apiKey: 'AIzaSyBhpLAc9nr_nZhHFjvF6cueN31IO4j7pzc',
+    authDomain: 'sim-pkn.firebaseapp.com',
+    projectId: 'sim-pkn',
+    storageBucket: 'sim-pkn.appspot.com',
+    messagingSenderId: '501182557899',
+    appId: '1:501182557899:web:044ebc631883b5c0b0f54e',
+    measurementId: 'G-3DEMQSVWE7',
 };
 
-firebase.initializeApp(firebaseConfig);
-const messaging = firebase.messaging();
+console.log('ini jalan ga ya');
+
+const app = firebase.initializeApp(firebaseConfig);
+console.log(app);
+const messaging = firebase.messaging(app);
+
+console.log(messaging);
+console.log(messaging.onBackgroundMessage);
 
 messaging.onBackgroundMessage((payload) => {
     console.log(
-        "[firebase-cloud-messaging-push-scope.js] Received background message ",
+        '[firebase-messaging-sw.js] Received background message ',
         payload
     );
     const notificationTitle = payload.notification.title;

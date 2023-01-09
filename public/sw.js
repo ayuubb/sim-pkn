@@ -35,7 +35,7 @@ this.addEventListener('activate', (event) => {
 });
 
 this.addEventListener('fetch', (event) =>{
-    console.log('fetch event', event);
+    // console.log('fetch event', event);
     if(event.request.url.indexOf('firebase.googleapis.com') === -1){
         event.respondWith(
             caches.match(event.request)

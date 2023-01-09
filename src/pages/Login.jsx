@@ -15,21 +15,21 @@ export default function Login() {
         try {
             await AuthService.login(nim, password).then(
                 (res) => {
-                    console.log(res);
+                    // console.log(res);
                     navbarC.setnavbar(res);
                     navigate('/portfolio');
                 },
                 (error) => {
-                    console.log(error);
+                    // console.log(error);
                 }
             );
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     };
 
     useEffect(() => {
-        console.log(navbarC.navbar);
+        // console.log(navbarC.navbar);
     }, []);
 
     return (

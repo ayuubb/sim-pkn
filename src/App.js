@@ -8,24 +8,44 @@ import AuthService from './services/auth.service';
 import Portfolio from './pages/Portfolio';
 import Laporan from './pages/Laporan';
 import TambahLaporan from './pages/TambahLaporan';
-import {firebase} from './firebase'
+import {messaging} from './firebase'
+import { getToken, onMessage } from "firebase/messaging";
 
 const navbarContext = React.createContext();
 
 
 function App() {
+    async function requestPermission() {
+        const permission = await Notification.requestPermission();
+        if (permission === "granted") {
+            // Generate Token
+            const token = await getToken(messaging, {
+                vapidKey:
+                    "BCI0raiLrfvRGZUkWU0rSz3eSzQL52AZiQ8C14achBYHtTWvcuHkSoVB9CjcWGv0BjfHnLPp69Y8Hl7hU8skEbg",
+            });
+            console.log("Token Gen", token);
+            // Send this token  to server ( db)
+        } else if (permission === "denied") {
+            alert("You denied for the notification");
+        }
+    }
 
-  // useEffect(() => {
-  //    const msg = firebase.messaging();
-  //    msg.requestPermission().then(()=>{
-  //     return msg.getToken();
+    // const activarMensajes = async ()=> {
+    //     const token = await getToken(messaging,{
+    //         vapidKey: "BCI0raiLrfvRGZUkWU0rSz3eSzQL52AZiQ8C14achBYHtTWvcuHkSoVB9CjcWGv0BjfHnLPp69Y8Hl7hU8skEbg"
+    //     }).catch(error => console.log("Tuviste un error al generar el token, papá"));
+    //
+    //
+    //     if(token) console.log("tu token:",token);
+    //     if(!token) console.log("no tienes token, rey");
+    // }
 
-  //    }).then((data) =>{
-  //     console.log('token', data);
-  //    }).catch(()=>{
-  //     console.log('error')
-  //    })
-  // })
+  useEffect(() => {
+      requestPermission()
+      onMessage(messaging, message=>{
+          console.log("tes :", message);
+      })
+  })
   
   const [navbar, setnavbar] = useState(AuthService.getCurrentUser())
 
