@@ -93,8 +93,8 @@ export default function Portfolio() {
     }, []);
 
     useEffect(() => {
-        const user = AuthService.getCurrentUser();
-        UserService.getMahasiswaById(user.uid).then(
+        // const user = AuthService.getCurrentUser();
+        UserService.getMahasiswaById('201810370311005').then(
             (response) => {
                 const data = response.data.data;
                 // console.log(data);
