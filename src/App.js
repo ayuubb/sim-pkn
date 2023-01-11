@@ -23,11 +23,29 @@ function App() {
                     'BCI0raiLrfvRGZUkWU0rSz3eSzQL52AZiQ8C14achBYHtTWvcuHkSoVB9CjcWGv0BjfHnLPp69Y8Hl7hU8skEbg',
             });
             console.log('Token Gen', token);
+            console.log(messaging);
             alert(token);
             // Send this token  to server ( db)
         } else if (permission === 'denied') {
             alert('You denied for the notification');
         }
+
+        messaging.onBackgroundMessageHandler((payload) => {
+            console.log(
+                '[firebase-messaging-sw.js] Received background message ',
+                payload
+            );
+            const notificationTitle = payload.notification.title;
+            const notificationOptions = {
+                body: payload.notification.body,
+                icon: payload.notification.image,
+            };
+
+            this.registration.showNotification(
+                notificationTitle,
+                notificationOptions
+            );
+        });
     }
 
     // const activarMensajes = async ()=> {

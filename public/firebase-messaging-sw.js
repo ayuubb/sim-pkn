@@ -22,7 +22,7 @@ console.log(app);
 const messaging = firebase.messaging(app);
 
 console.log(messaging);
-console.log(messaging.onBackgroundMessage);
+console.log(messaging);
 
 messaging.onBackgroundMessage((payload) => {
     console.log(
